@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:nike_ecommerce/common/excepctions.dart';
+import 'package:nike_ecommerce/common/exceptions.dart';
 import 'package:nike_ecommerce/data/product.dart';
 
 abstract class IProductDataSource {
