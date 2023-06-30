@@ -20,9 +20,9 @@ class ProductRemoteDataSource
     final response = await httpClient.get('/product/list?sort=$sort');
     validateResponse(response);
     final products = <ProductEntity>[];
-    (response.data as List).forEach((element) {
+    for (var element in response.data) {
       products.add(ProductEntity.fromJson(element));
-    });
+    }
     return products;
   }
 
