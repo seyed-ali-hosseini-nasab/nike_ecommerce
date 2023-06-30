@@ -80,7 +80,7 @@ flutter:
     - family: Vazir
       fonts:
         - asset: assets/fonts/Vazir-Regular.ttf
-        - asset: fonts/Vazir-Bold.ttf
+        - asset: assets/fonts/Vazir-Bold.ttf
           weight: 700
   #
   # For details regarding fonts from package dependencies,
