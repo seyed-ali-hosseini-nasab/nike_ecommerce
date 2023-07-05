@@ -16,12 +16,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         textTheme: TextTheme(
-          subtitle1: defaultTextStyle.apply(color: LightThemeColors.secondaryTextColor),
+          subtitle1: defaultTextStyle.apply(
+              color: LightThemeColors.secondaryTextColor),
           bodyText2: defaultTextStyle,
           button: defaultTextStyle,
           caption: defaultTextStyle.apply(
               color: LightThemeColors.secondaryTextColor),
-          headline6: defaultTextStyle.copyWith(fontWeight: FontWeight.bold),
+          headline6: defaultTextStyle.copyWith(
+              fontWeight: FontWeight.bold, fontSize: 18),
         ),
         colorScheme: const ColorScheme.light(
           primary: LightThemeColors.primaryColor,

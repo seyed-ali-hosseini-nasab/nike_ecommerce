@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nike_ecommerce/common/utils.dart';
 import 'package:nike_ecommerce/data/product.dart';
 import 'package:nike_ecommerce/data/repository/banner_repository.dart';
 import 'package:nike_ecommerce/data/repository/product_repository.dart';
@@ -25,6 +26,7 @@ class HomeScreen extends StatelessWidget {
           builder: ((context, state) {
             if (state is HomeSuccess) {
               return ListView.builder(
+                physics: defaultScrollPhysic,
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     switch (index) {
@@ -118,6 +120,7 @@ class _HorizontalProductList extends StatelessWidget {
         SizedBox(
           height: 290,
           child: ListView.builder(
+            physics: defaultScrollPhysic,
             itemBuilder: (context, index) {
               final product = products[index];
               return ProductItem(
