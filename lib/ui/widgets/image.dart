@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 class ImageLoadingService extends StatelessWidget {
   final String imageUrl;
-  final BorderRadius? borderRadius;
+  final BorderRadius borderRadius;
 
   const ImageLoadingService({
     Key? key,
-    required this.imageUrl, this.borderRadius,
+    required this.imageUrl,
+    this.borderRadius = BorderRadius.zero,
   }) : super(key: key);
 
   @override
