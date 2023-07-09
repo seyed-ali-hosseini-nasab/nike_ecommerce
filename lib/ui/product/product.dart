@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nike_ecommerce/common/utils.dart';
 import 'package:nike_ecommerce/data/product.dart';
+import 'package:nike_ecommerce/ui/product/details.dart';
 import 'package:nike_ecommerce/ui/widgets/image.dart';
 
 class ProductItem extends StatelessWidget {
@@ -20,7 +21,10 @@ class ProductItem extends StatelessWidget {
       padding: const EdgeInsets.all(4),
       child: InkWell(
         borderRadius: borderRadius,
-        onTap: () {},
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(
+                  product: product,
+                ))),
         child: SizedBox(
           width: 176,
           child: Column(
