@@ -50,7 +50,7 @@ class AuthRemoteDataSource
   @override
   Future<AuthInfo> signUp(String username, String password) async {
     final response = await httpClient.post('/user/register', data: {
-      "username": username,
+      "email": username,
       "password": password,
     });
     validateResponse(response);
