@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_ecommerce/data/repository/auth_repository.dart';
+import 'package:nike_ecommerce/data/repository/cart_repository.dart';
 import 'package:nike_ecommerce/ui/auth/bloc/auth_bloc.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -53,7 +54,7 @@ class _AuthScreenState extends State<AuthScreen> {
           backgroundColor: themeData.colorScheme.secondary,
           body: BlocProvider<AuthBloc>(
             create: (context) {
-              final bloc = AuthBloc(authRepository);
+              final bloc = AuthBloc(authRepository, cartRepository);
               bloc.stream.forEach((state) {
                 if (state is AuthSuccess) {
                   Navigator.of(context).pop();

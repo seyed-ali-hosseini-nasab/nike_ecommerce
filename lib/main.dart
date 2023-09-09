@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nike_ecommerce/data/repository/auth_repository.dart';
 import 'package:nike_ecommerce/theme.dart';
 import 'package:nike_ecommerce/ui/root.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  authRepository.loadAuthInfo();
   runApp(const MyApp());
 }
 
@@ -14,21 +17,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     const defaultTextStyle = TextStyle(fontFamily: 'Vazir');
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: LightThemeColors.primaryTextColor,
+          elevation: 0,
+        ),
+        snackBarTheme: SnackBarThemeData(
+            contentTextStyle: defaultTextStyle.apply(color: Colors.white)),
         textTheme: TextTheme(
-          subtitle1: defaultTextStyle.apply(
+          titleMedium: defaultTextStyle.apply(
               color: LightThemeColors.secondaryTextColor),
-          bodyText2: defaultTextStyle,
-          button: defaultTextStyle,
-          caption: defaultTextStyle.apply(
+          bodyMedium: defaultTextStyle,
+          labelLarge: defaultTextStyle,
+          bodySmall: defaultTextStyle.apply(
               color: LightThemeColors.secondaryTextColor),
-          headline6: defaultTextStyle.copyWith(
+          titleLarge: defaultTextStyle.copyWith(
               fontWeight: FontWeight.bold, fontSize: 18),
         ),
         colorScheme: const ColorScheme.light(
           primary: LightThemeColors.primaryColor,
           secondary: LightThemeColors.secondaryColor,
           onSecondary: Colors.white,
+          surfaceVariant:  Color(0xfff5f5f5),
         ),
       ),
       home: const Directionality(
