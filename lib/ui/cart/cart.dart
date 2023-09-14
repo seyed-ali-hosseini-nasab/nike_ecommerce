@@ -9,6 +9,7 @@ import 'package:nike_ecommerce/ui/auth/auth.dart';
 import 'package:nike_ecommerce/ui/cart/bloc/cart_bloc.dart';
 import 'package:nike_ecommerce/ui/cart/cart_item.dart';
 import 'package:nike_ecommerce/ui/cart/price_info.dart';
+import 'package:nike_ecommerce/ui/shipping/shipping.dart';
 import 'package:nike_ecommerce/ui/widgets/empty_state.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -58,7 +59,18 @@ class _CartScreenState extends State<CartScreen> {
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 48, right: 48),
             child: FloatingActionButton.extended(
-              onPressed: () {},
+              onPressed: () {
+                final state = cartBloc!.state;
+                if (state is CartSuccess) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ShippingScreen(
+                      payablePrice: state.cartResponse.payablePrice,
+                      shippingCost: state.cartResponse.shippingCost,
+                      totalPrice: state.cartResponse.totalPrice,
+                    ),
+                  ));
+                }
+              },
               label: const Text('پرداخت'),
             ),
           ),

@@ -19,6 +19,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        hintColor: LightThemeColors.secondaryTextColor,
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: LightThemeColors.primaryTextColor.withOpacity(0.1),
+            ),
+          ),
+        ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           foregroundColor: LightThemeColors.primaryTextColor,
@@ -40,7 +49,7 @@ class MyApp extends StatelessWidget {
           primary: LightThemeColors.primaryColor,
           secondary: LightThemeColors.secondaryColor,
           onSecondary: Colors.white,
-          surfaceVariant:  Color(0xfff5f5f5),
+          surfaceVariant: Color(0xfff5f5f5),
         ),
       ),
       home: const Directionality(
