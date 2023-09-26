@@ -3,6 +3,13 @@ class ProductSort {
   static const int popular = 1;
   static const int priceHighToLow = 2;
   static const int priceLowToHigh = 3;
+
+  static const List<String> names = [
+    'جدیدترین',
+    'پربازدیدترین',
+    'قیمت نزولی',
+    'قیمت صعودی',
+  ];
 }
 
 class ProductEntity {
@@ -21,6 +28,5 @@ class ProductEntity {
             ? json['price'] - json['discount']
             : json['price'],
         discount = json['discount'],
-        previousPrice =
-            json['previous_price'] ?? json['price'];
+        previousPrice = json['previous_price'] ?? json['price'];
 }

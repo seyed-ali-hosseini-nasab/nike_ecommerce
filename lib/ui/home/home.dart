@@ -5,6 +5,7 @@ import 'package:nike_ecommerce/data/product.dart';
 import 'package:nike_ecommerce/data/repository/banner_repository.dart';
 import 'package:nike_ecommerce/data/repository/product_repository.dart';
 import 'package:nike_ecommerce/ui/home/bloc/home_bloc.dart';
+import 'package:nike_ecommerce/ui/list/list.dart';
 import 'package:nike_ecommerce/ui/product/product.dart';
 import 'package:nike_ecommerce/ui/widgets/error.dart';
 import 'package:nike_ecommerce/ui/widgets/slider.dart';
@@ -48,13 +49,23 @@ class HomeScreen extends StatelessWidget {
                       case 3:
                         return _HorizontalProductList(
                           title: 'جدیدترین',
-                          onTab: () {},
+                          onTab: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const ProductListScreen(
+                                  sort: ProductSort.latest),
+                            ));
+                          },
                           products: state.latestProducts,
                         );
                       case 4:
                         return _HorizontalProductList(
                           title: 'پربازدیدترین',
-                          onTab: () {},
+                          onTab: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const ProductListScreen(
+                                  sort: ProductSort.popular),
+                            ));
+                          },
                           products: state.popularProducts,
                         );
                       default:
@@ -103,7 +114,7 @@ class _HorizontalProductList extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               TextButton(onPressed: onTab, child: const Text('مشاهده همه')),
             ],

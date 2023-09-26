@@ -10,10 +10,14 @@ class ProductItem extends StatelessWidget {
     Key? key,
     required this.product,
     required this.borderRadius,
+    this.itemWidth = 176,
+    this.itemHeight = 189,
   }) : super(key: key);
 
   final ProductEntity product;
   final BorderRadius borderRadius;
+  final double itemWidth;
+  final double itemHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +30,14 @@ class ProductItem extends StatelessWidget {
                   product: product,
                 ))),
         child: SizedBox(
-          width: 176,
+          width: itemWidth,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
-                  SizedBox(
-                    width: 176,
-                    height: 189,
+                  AspectRatio(
+                    aspectRatio: itemWidth / itemHeight,
                     child: ImageLoadingService(
                       imageUrl: product.imageUrl,
                       borderRadius: borderRadius,
@@ -73,7 +76,7 @@ class ProductItem extends StatelessWidget {
                   product.previousPrice.withPriceLAble,
                   style: Theme.of(context)
                       .textTheme
-                      .caption!
+                      .bodySmall!
                       .copyWith(decoration: TextDecoration.lineThrough),
                 ),
               ),
