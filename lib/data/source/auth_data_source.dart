@@ -8,7 +8,7 @@ abstract class IAuthDataSource {
 
   Future<AuthInfo> signUp(String username, String password);
 
-  Future<AuthInfo> refreshToken(String token);
+  Future<AuthInfo> refreshToken(String token, {String email = ''});
 }
 
 class AuthRemoteDataSource
@@ -30,11 +30,14 @@ class AuthRemoteDataSource
 
     validateResponse(response);
     return AuthInfo(
-        response.data['access_token'], response.data['refresh_token']);
+      response.data['access_token'],
+      response.data['refresh_token'],
+      username,
+    );
   }
 
   @override
-  Future<AuthInfo> refreshToken(String token) async {
+  Future<AuthInfo> refreshToken(String token, {String email = ''}) async {
     final response = await httpClient.post('/auth/token', data: {
       "grant_type": "refresh_token",
       "refresh_token": token,
@@ -44,7 +47,10 @@ class AuthRemoteDataSource
 
     validateResponse(response);
     return AuthInfo(
-        response.data['access_token'], response.data['refresh_token']);
+      response.data['access_token'],
+      response.data['refresh_token'],
+      email,
+    );
   }
 
   @override
