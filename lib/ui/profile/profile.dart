@@ -4,6 +4,7 @@ import 'package:nike_ecommerce/data/auth_info.dart';
 import 'package:nike_ecommerce/data/repository/auth_repository.dart';
 import 'package:nike_ecommerce/data/repository/cart_repository.dart';
 import 'package:nike_ecommerce/ui/auth/auth.dart';
+import 'package:nike_ecommerce/ui/favorites/favorite.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -18,7 +19,8 @@ class ProfileScreen extends StatelessWidget {
       body: ValueListenableBuilder<AuthInfo?>(
           valueListenable: AuthRepository.authChangeNotifier,
           builder: (context, authInfo, child) {
-            final bool isLogin = authInfo != null && authInfo.accessToken.isNotEmpty;
+            final bool isLogin =
+                authInfo != null && authInfo.accessToken.isNotEmpty;
             return Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,7 +43,11 @@ class ProfileScreen extends StatelessWidget {
                   const SizedBox(height: 32),
                   const Divider(height: 1),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const FavoriteListScreen(),
+                      ));
+                    },
                     child: Container(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       height: 56,

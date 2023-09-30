@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_ecommerce/common/utils.dart';
+import 'package:nike_ecommerce/data/favorite_manager.dart';
 import 'package:nike_ecommerce/data/product.dart';
 import 'package:nike_ecommerce/data/repository/cart_repository.dart';
 import 'package:nike_ecommerce/theme.dart';
@@ -81,8 +82,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   foregroundColor: LightThemeColors.primaryTextColor,
                   actions: [
                     IconButton(
-                      onPressed: () {},
-                      icon: const Icon(CupertinoIcons.heart),
+                      onPressed: () {
+                        if (favoriteManager.isFavorite(widget.product)) {
+                          favoriteManager.removeFavorite(widget.product);
+                        } else {
+                          favoriteManager.addFavorite(widget.product);
+                        }
+
+                        setState(() {});
+                      },
+                      icon:  Icon(favoriteManager.isFavorite(widget.product)
+                          ? CupertinoIcons.heart_fill
+                          : CupertinoIcons.heart,),
                     ),
                   ],
                 ),

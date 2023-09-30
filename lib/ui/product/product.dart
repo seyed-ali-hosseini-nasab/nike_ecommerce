@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nike_ecommerce/common/utils.dart';
+import 'package:nike_ecommerce/data/favorite_manager.dart';
 import 'package:nike_ecommerce/data/product.dart';
 import 'package:nike_ecommerce/ui/product/details.dart';
 import 'package:nike_ecommerce/ui/widgets/image.dart';
@@ -46,17 +48,33 @@ class ProductItem extends StatelessWidget {
                   Positioned(
                     right: 8,
                     top: 8,
-                    child: Container(
-                      height: 32,
-                      width: 32,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      child: const Icon(
-                        CupertinoIcons.heart,
-                        size: 20,
+                    child: InkWell(
+                      onTap: () {
+                        if (favoriteManager.isFavorite(product)) {
+                          favoriteManager.removeFavorite(product);
+                        } else {
+                          favoriteManager.addFavorite(product);
+                        }
+                      },
+                      child: ValueListenableBuilder<Box<ProductEntity>>(
+                        valueListenable: favoriteManager.listenable,
+                        builder: (context, box, child) {
+                          return Container(
+                            height: 32,
+                            width: 32,
+                            alignment: Alignment.center,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            child: Icon(
+                              favoriteManager.isFavorite(product)
+                                  ? CupertinoIcons.heart_fill
+                                  : CupertinoIcons.heart,
+                              size: 20,
+                            ),
+                          );
+                        },
                       ),
                     ),
                   )
