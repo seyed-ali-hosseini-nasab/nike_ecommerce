@@ -7,6 +7,8 @@ final commentRepository =
 
 abstract class ICommnetRepository {
   Future<List<CommentEntity>> getAll({required int productId});
+
+  Future<CommentEntity> addComment(CreateCommentParams commentParams);
 }
 
 class CommentRepository implements ICommnetRepository {
@@ -17,4 +19,8 @@ class CommentRepository implements ICommnetRepository {
   @override
   Future<List<CommentEntity>> getAll({required int productId}) =>
       dataSource.getAll(productId: productId);
+
+  @override
+  Future<CommentEntity> addComment(CreateCommentParams commentParams) =>
+      dataSource.addComment(commentParams);
 }

@@ -6,8 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_ecommerce/common/utils.dart';
 import 'package:nike_ecommerce/data/favorite_manager.dart';
 import 'package:nike_ecommerce/data/product.dart';
+import 'package:nike_ecommerce/data/repository/auth_repository.dart';
 import 'package:nike_ecommerce/data/repository/cart_repository.dart';
 import 'package:nike_ecommerce/theme.dart';
+import 'package:nike_ecommerce/ui/comment/comment.dart';
 import 'package:nike_ecommerce/ui/product/bloc/product_bloc.dart';
 import 'package:nike_ecommerce/ui/product/comment/comment_list.dart';
 import 'package:nike_ecommerce/ui/widgets/image.dart';
@@ -91,9 +93,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
                         setState(() {});
                       },
-                      icon:  Icon(favoriteManager.isFavorite(widget.product)
-                          ? CupertinoIcons.heart_fill
-                          : CupertinoIcons.heart,),
+                      icon: Icon(
+                        favoriteManager.isFavorite(widget.product)
+                            ? CupertinoIcons.heart_fill
+                            : CupertinoIcons.heart,
+                      ),
                     ),
                   ],
                 ),
@@ -141,7 +145,24 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                final authInfo =
+                                    AuthRepository.authChangeNotifier.value;
+                                if (authInfo == null ||
+                                    authInfo.accessToken.isEmpty) {
+                                  _scaffoldKey.currentState!
+                                      .showSnackBar(const SnackBar(
+                                    content: Text(
+                                        'لطفا ابندا وارد حساب کاربری خود شوید'),
+                                  ));
+                                } else {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => CommnetScreen(
+                                      productId: widget.product.id,
+                                    ),
+                                  ));
+                                }
+                              },
                               child: const Text('ثبت نظر'),
                             )
                           ],

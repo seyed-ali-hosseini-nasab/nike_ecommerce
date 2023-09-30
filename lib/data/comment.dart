@@ -12,3 +12,11 @@ class CommentEntity {
         date = json['date'],
         email = json['author']['email'];
 }
+
+class CreateCommentParams {
+  final String title;
+  final String content;
+  final int productId;
+
+  CreateCommentParams(this.title, this.content, this.productId);
+}
