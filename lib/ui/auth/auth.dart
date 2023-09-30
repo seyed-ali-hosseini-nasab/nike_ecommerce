@@ -60,7 +60,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   Navigator.of(context).pop();
                 } else if (state is AuthError) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.exception.massage)));
+                      SnackBar(content: Text(state.exception.message)));
                 }
               });
               bloc.add(AuthStarted());

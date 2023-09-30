@@ -1,5 +1,5 @@
 class AppException{
-  final String massage;
+  final String message;
 
-  AppException({this.massage = 'خطای نامشخص'});
+  AppException({this.message = 'خطای نامشخص'});
 }

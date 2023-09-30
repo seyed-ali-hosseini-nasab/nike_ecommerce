@@ -210,7 +210,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 ],
               );
             } else if (state is ProductListError) {
-              return Center(child: Text(state.exception.massage));
+              return Center(child: Text(state.exception.message));
             } else {
               throw Exception('state is not defined');
             }

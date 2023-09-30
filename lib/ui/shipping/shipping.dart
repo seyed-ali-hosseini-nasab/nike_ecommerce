@@ -56,7 +56,7 @@ class _ShippingScreenState extends State<ShippingScreen> {
           subscription = bloc.stream.listen((state) {
             if (state is ShippingError) {
               ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.appException.massage)));
+                  SnackBar(content: Text(state.appException.message)));
             } else if (state is ShippingSuccess) {
               if (state.result.bankGatewayUrl.isNotEmpty) {
                 Navigator.push(

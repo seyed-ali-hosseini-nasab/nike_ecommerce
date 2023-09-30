@@ -90,7 +90,7 @@ class OrderHistoryScreen extends StatelessWidget {
             } else if (state is OrderHistoryLoading) {
               return const Center(child: CupertinoActivityIndicator());
             } else if (state is OrderHistoryError) {
-              return Center(child: Text(state.exception.massage));
+              return Center(child: Text(state.exception.message));
             } else {
               throw Exception('Invalid state');
             }

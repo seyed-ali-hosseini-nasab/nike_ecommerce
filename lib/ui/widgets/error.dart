@@ -18,7 +18,7 @@ class AppErrorWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(exception.massage),
+          Text(exception.message),
           ElevatedButton(onPressed: onPressed, child: const Text('تلاش دوباره'))
         ],
       ),

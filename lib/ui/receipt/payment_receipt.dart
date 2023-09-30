@@ -106,7 +106,7 @@ class PaymentReceiptScreen extends StatelessWidget {
                   ],
                 );
               } else if (state is PaymentReceiptError) {
-                return Center(child: Text(state.exception.massage));
+                return Center(child: Text(state.exception.message));
               } else if (state is PaymentReceiptLoading) {
                 return const Center(child: CupertinoActivityIndicator());
               } else {

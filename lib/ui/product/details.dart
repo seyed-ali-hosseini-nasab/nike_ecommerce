@@ -45,7 +45,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   content: Text('با موفقیت به سبد خرید اضافه شد')));
             } else if (state is ProductAddToCartError) {
               _scaffoldKey.currentState?.showSnackBar(
-                  SnackBar(content: Text(state.exception.massage)));
+                  SnackBar(content: Text(state.exception.message)));
             }
           });
           return bloc;

@@ -103,7 +103,7 @@ class _CartScreenState extends State<CartScreen> {
                 );
               } else if (state is CartError) {
                 return Center(
-                  child: Text(state.exception.massage),
+                  child: Text(state.exception.message),
                 );
               } else if (state is CartSuccess) {
                 return SmartRefresher(
