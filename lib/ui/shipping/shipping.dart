@@ -59,8 +59,7 @@ class _ShippingScreenState extends State<ShippingScreen> {
                   SnackBar(content: Text(state.appException.message)));
             } else if (state is ShippingSuccess) {
               if (state.result.bankGatewayUrl.isNotEmpty) {
-                Navigator.push(
-                  context,
+                Navigator.of(context, rootNavigator: true).push(
                   MaterialPageRoute(
                     builder: (context) => PaymentGatewayScreen(
                         bankGatewayUrl: state.result.bankGatewayUrl),
