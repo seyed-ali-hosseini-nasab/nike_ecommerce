@@ -84,7 +84,7 @@ class _CartScreenState extends State<CartScreen> {
                 stateIsSuccess = state is CartSuccess;
               });
               if (_refreshController.isRefresh) {
-                if (state is CartSuccess) {
+                if (state is CartSuccess || state is CartEmpty) {
                   _refreshController.refreshCompleted();
                 } else if (state is CartError) {
                   _refreshController.refreshFailed();
@@ -173,11 +173,27 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 );
               } else if (state is CartEmpty) {
-                return EmptyView(
-                  message: 'سبد خرید خالی است',
-                  image: SvgPicture.asset(
-                    'assets/images/empty_cart.svg',
-                    width: 200,
+                return SmartRefresher(
+                  controller: _refreshController,
+                  header: const ClassicHeader(
+                    completeText: 'با موفقیت انجام شد',
+                    refreshingText: 'در حال بروزرسانی',
+                    idleText: 'به پایین بکشید',
+                    releaseText: 'رها کنید',
+                    failedText: 'خطای نامشخص',
+                    spacing: 2,
+                  ),
+                  onRefresh: () {
+                    cartBloc?.add(CartStarted(
+                        AuthRepository.authChangeNotifier.value,
+                        isRefreshing: true));
+                  },
+                  child: EmptyView(
+                    message: 'سبد خرید خالی است',
+                    image: SvgPicture.asset(
+                      'assets/images/empty_cart.svg',
+                      width: 200,
+                    ),
                   ),
                 );
               } else {
