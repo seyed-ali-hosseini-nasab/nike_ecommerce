@@ -87,7 +87,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                       ),
                                       context: context,
                                       builder: (context) {
-                                        return Container(
+                                        return SizedBox(
                                           height: 300,
                                           child: Padding(
                                             padding: const EdgeInsets.only(
@@ -185,7 +185,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                                     : ViewType.grid;
                               });
                             },
-                            icon: const Icon(CupertinoIcons.square_grid_2x2),
+                            icon: Icon(viewType == ViewType.grid
+                                ? CupertinoIcons.list_bullet
+                                : CupertinoIcons.square_grid_2x2),
                           ),
                         ],
                       ),
